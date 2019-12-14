@@ -1,26 +1,44 @@
-function registerSelf() {
-  return fetch("http://guestbook.example.com/register", {
-    method: 'POST',
-    body: {
-      firstName: "Jason",
-      registryMessage: "Hello, this is my message to the registry"
-    }
-  })
-  .then(function(result) => { return result.json();}).then(function(json) { return json.message;});
+const testVar = {};
+
+function testFunc() {
+  return "hi";
 }
 
-function errorSelf() {
-  return fetch("http://guestbook.example.com/register-error", {
-    "method": "POST",
-    "body": {
-      "firstName": "Byron the Poodle",
-      "registryMessage": "Bite!"
+function registerSelf() {
+  return fetch("http://guestbook.example.com/register", {
+    method: "POST",
+    body: {
+      firstName: "Jessica",
+      registryMessage: "Registered"
     }
-  }).then(function(response) {
-    return response.json();
-  }).then(function(json) {
-    return json.message;
-  }).catch(function(x) {
-    return ":(";
-  });
+  })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(json) {
+      return json.message;
+    });
+}
+
+let formData = {
+  firstName: "Jessica",
+  registryMessage: "This is a message"
+};
+
+let configObj = {
+  method: "POST",
+  body: formData
+};
+
+function errorSelf() {
+  return fetch("http://guestbook.example.com/register-error", configObj)
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(json) {
+      return json.messsage;
+    })
+    .catch(function(x) {
+      return ":(";
+    });
 }
