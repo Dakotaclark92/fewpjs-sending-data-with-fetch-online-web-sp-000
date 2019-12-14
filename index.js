@@ -14,7 +14,7 @@ function registerSelf() {
 }
 
 function errorSelf() {
-return fetch("http://guestbook.example.com/register-error", {
+  return fetch("http://guestbook.example.com/register-error", {
     "method": "POST",
     "body": {
       "firstName": "Byron the Poodle",
