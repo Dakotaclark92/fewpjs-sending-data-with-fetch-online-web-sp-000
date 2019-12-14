@@ -1,44 +1,28 @@
-const testVar = {};
 
-function testFunc() {
-  return "hi";
-}
 
-function registerSelf() {
-  return fetch("http://guestbook.example.com/register", {
-    method: "POST",
-    body: {
-      firstName: "Jessica",
-      registryMessage: "Registered"
-    }
-  })
+function submitData(name, email) {
+    let formData = {
+        name,
+        email
+    };
+
+    let configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+    };
+
+    return fetch("http://localhost:3000/users", configObj)
     .then(function(response) {
-      return response.json();
+        return response.json();
     })
-    .then(function(json) {
-      return json.message;
+    .then(function(data) {
+        document.body.innerHTML = data.id;
+    })
+    .catch(function(error) {
+        document.body.innerHTML = error.message;
     });
-}
-
-let formData = {
-  firstName: "Jessica",
-  registryMessage: "This is a message"
-};
-
-let configObj = {
-  method: "POST",
-  body: formData
-};
-
-function errorSelf() {
-  return fetch("http://guestbook.example.com/register-error", configObj)
-    .then(function(res) {
-      return res.json();
-    })
-    .then(function(json) {
-      return json.messsage;
-    })
-    .catch(function(x) {
-      return ":(";
-    });
-}
+} 
