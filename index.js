@@ -6,11 +6,7 @@ function registerSelf() {
       registryMessage: "Hello, this is my message to the registry"
     }
   })
-  .then(function(result) => {
-    return result.json();
-  }).then(function(json) {
-    return json.message;
-  });
+  .then(function(result) => { return result.json();}).then(function(json) { return json.message;});
 }
 
 function errorSelf() {
